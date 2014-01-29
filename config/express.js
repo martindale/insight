@@ -35,6 +35,12 @@ module.exports = function(app, historicSync) {
     next();
   }
   app.use('/api/sync', setHistoric);
+
+  // allow remote access
+  app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+  });
  
   app.configure(function() {
 
